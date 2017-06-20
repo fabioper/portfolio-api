@@ -1,0 +1,44 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true,
+        "mocha": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 8,
+        "ecmaFeatures": {
+            "impliedStrict": true
+        },
+        "sourceType": "module"
+    },
+    "rules": {
+        "arrow-parens": ["error", "as-needed"],
+        "arrow-body-style": ["warn", "as-needed"],
+        "constructor-super": "warn",
+        "indent": ["error", 4],
+        "newline-before-return": "error",
+        "newline-per-chained-call": "warn",
+        "no-const-assign": "warn",
+        "no-multiple-empty-lines": ["error", { "max": 1 }],
+        "no-multi-spaces": "error",
+        "no-this-before-super": "warn",
+        "no-trailing-spaces": "error",
+        "no-undef": "warn",
+        "no-unreachable": "error",
+        "no-unused-vars": "warn",
+        "no-var": "error",
+        "object-curly-spacing": ["warn", "always"],
+        "padded-blocks": ["warn", "never"],
+        "prefer-arrow-callback": "error",
+        "prefer-const": "error",
+        "prefer-template": "error",
+        "quotes": ["error", "single"],
+        "sort-imports": "warn",
+        "sort-vars": "warn",
+        "template-curly-spacing": ["error", "always"],
+        "valid-typeof": "warn"
+    }
+}
