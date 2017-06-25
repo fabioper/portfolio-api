@@ -1,7 +1,6 @@
 const router = require('express').Router()
 
-router.get('/', (req, res) => {
-    res.json({ 'message': 'Portfólio API' })
-})
+router.use('/projects', require('./projects'))
+router.use('/authentication', require('./authentication'))
 
 module.exports = router

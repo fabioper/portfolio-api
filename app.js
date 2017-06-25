@@ -1,13 +1,14 @@
 const express = require('express')
-
-const port = process.env.PORT || 3000
+const logger = require('morgan')
 
 // Set up a new express app
 const app = express()
 
+app.use(logger('dev'))
+
 // Set up the routes
 app.use('/', require('./routes'))
 
-app.listen(port, () => {
-    console.log(`Express server listening on port ${ port }`)
+app.listen(process.env.PORT, () => {
+    console.log(`Express server listening on port ${ process.env.PORT }`)
 })
