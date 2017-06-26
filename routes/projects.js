@@ -1,22 +1,29 @@
 const router = require('express').Router()
+const { MongoClient } = require('mongodb')
+const assert = require('assert')
 
-router.route('/')
-    .get((req, res) => {
-        // Get all Projects => localhost:8000/projects
-    })
-    .post((req, res) => {
-        // Add a new Project => localhost:8000/projects
-    })
+MongoClient.connect(process.env.MONGO_URI, (err, db) => {
+    assert.equal(err, null)
+    console.log('Successfully connected to MongoDB')
 
-router.route('/:id')
-    .get((req, res) => {
-        // Get an individual Project => localhost:8000/projects/:id
-    })
-    .patch((req, res) => {
-        // Update a Project => localhost:8000/projects/:id
-    })
-    .delete((req, res) => {
-        // Delete a Project => localhost:8000/projects/:id
-    })
+    router.route('/')
+        .get((req, res) => {
+            // Get all projects
+        })
+        .post((req, res) => {
+            // Add a new Project
+        })
+
+    router.route('/:id')
+        .get((req, res) => {
+            // Get an individual Project
+        })
+        .patch((req, res) => {
+            // Update a Project
+        })
+        .delete((req, res) => {
+            // Delete a Project
+        })
+})
 
 module.exports = router
