@@ -7,8 +7,10 @@ const app = express()
 app.use(logger('dev'))
 
 // Set up the routes
-app.use('/', require('./routes'))
+app.use('/api', require('./routes'))
 
 app.listen(process.env.PORT, () => {
     console.log(`Express server listening on port ${ process.env.PORT }`)
 })
+
+module.exports = app
