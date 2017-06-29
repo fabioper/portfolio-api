@@ -53,8 +53,13 @@ MongoClient.connect(process.env.MONGO_URI, (err, db) => {
 
     router.route('/:id')
         .all((req, res, next) => {
-            const id = new ObjectID(req.params.id)
-            req.id = { _id: id }
+            const id = req.params.id
+
+            if (!ObjectID.isValid(id)) {
+                return res.status(404).json({ status: 404, error: 'Project could\'t found' })
+            }
+
+            req.id = { _id: new ObjectID(id) }
 
             next()
         })
