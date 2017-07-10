@@ -19,7 +19,6 @@
         "arrow-body-style": ["warn", "as-needed"],
         "constructor-super": "warn",
         "indent": ["error", 4],
-        "newline-before-return": "error",
         "newline-per-chained-call": "warn",
         "no-const-assign": "warn",
         "no-multiple-empty-lines": ["error", { "max": 1 }],
@@ -38,7 +37,12 @@
         "quotes": ["error", "single"],
         "sort-imports": "warn",
         "sort-vars": "warn",
-        "template-curly-spacing": ["error", "always"],
+        "space-before-function-paren": ["error", {
+            "anonymous": "always",
+            "named": "never",
+            "asyncArrow": "always"
+        }],
+        "template-curly-spacing": ["error", "never"],
         "valid-typeof": "warn"
     }
 }
