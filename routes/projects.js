@@ -1,3 +1,6 @@
-const router = require('express').Router();
+const router = require('express').Router()
+const projectsController = require('../controllers/projects_controller')
 
-module.exports = router;
+router.get('/projects', projectsController.index)
+
+module.exports = router
