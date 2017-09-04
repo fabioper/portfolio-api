@@ -25,7 +25,7 @@
         "eqeqeq": "error",
         // "func-names": ["warn", "always"],
         "func-style": ["error", "expression"],
-        "id-length": ["warn", { "min": 2, "max": 15 }],
+        "id-length": ["warn", { "min": 2, "max": 20 }],
         "indent": ["error", 4],
         "new-cap": "warn",
         "no-array-constructor": "error",
