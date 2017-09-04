@@ -27,7 +27,7 @@
         "func-style": ["error", "expression"],
         "id-length": ["warn", { "min": 2, "max": 20 }],
         "indent": ["error", 4],
-        "new-cap": "warn",
+        "new-cap": ["warn", { "properties": false }],
         "no-array-constructor": "error",
         "no-case-declarations": "error",
         "no-const-assign": "warn",
