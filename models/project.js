@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const ProjectSchema = new Schema({
     _id: String,
@@ -10,8 +10,8 @@ const ProjectSchema = new Schema({
     images: [String]
 }, {
     timestamps: true
-});
+})
 
-const Project = mongoose.model('project', ProjectSchema);
+const Project = mongoose.model('project', ProjectSchema)
 
-module.exports = Project;
+module.exports = Project
