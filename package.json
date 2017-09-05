@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node app",
     "dev": "nodemon app",
-    "test": "NODE_ENV=test nodemon --exec 'mocha'"
+    "test": "NODE_ENV=test nodemon --exec 'mocha --recursive -R min'"
   },
   "repository": "git@github.com:fabioper/portfolio-api.git",
   "author": "Fábio Pereira <fabiopereira.fps@gmail.com>",
