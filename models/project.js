@@ -2,10 +2,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const ProjectSchema = new Schema({
-    _id: String,
     title: String,
     description: String,
-    roles: [String],
+    stack: [String],
+    url: String,
     lessonsLearned: [String],
     images: [String]
 }, {
