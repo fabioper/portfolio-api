@@ -23,6 +23,7 @@
         "camelcase": "warn",
         "dot-notation": "error",
         "eqeqeq": "error",
+        "eol-last": ["warn", "always"],
         // "func-names": ["warn", "always"],
         "func-style": ["error", "expression"],
         "id-length": ["warn", { "min": 2, "max": 20 }],

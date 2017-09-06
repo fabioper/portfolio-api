@@ -1,7 +1,9 @@
 const Project = require('../models/project')
 
-const index = (req, res, next) => {
-    // get all projects
+const ProjectController = {
+    index() {
+        // return all projects
+    }
 }
 
-module.exports = { index }
+module.exports = ProjectController
