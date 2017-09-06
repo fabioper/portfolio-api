@@ -3,6 +3,6 @@ const mongoose = require('mongoose')
 
 mongoose.Promise = global.Promise
 
-mongoose.connect(config.mongoUri, {
+mongoose.connect(config.MONGO_URI, {
     useMongoClient: true
 })
