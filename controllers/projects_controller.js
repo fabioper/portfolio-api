@@ -3,9 +3,11 @@ const Project = require('../models/project')
 const ProjectController = {
     index(req, res, next) {
         Project.find()
-            .then(projects => res.json({
-                results: projects
-            }))
+            .then(projects => {
+                res.json({
+                    results: projects
+                })
+            })
             .catch(next)
     },
 

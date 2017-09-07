@@ -19,7 +19,13 @@ app.use((error, req, res, next) => {
         code = 404
     }
 
-    res.status(code).send(error)
+    res.status(code).json({
+        error: {
+            status: res.statusCode,
+            message: error.message,
+            type: error.name
+        }
+    })
 })
 
 app.listen(config.PORT, () => {
