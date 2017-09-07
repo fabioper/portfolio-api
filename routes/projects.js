@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser')
 const router = require('express').Router()
 const projectsController = require('../controllers/projects_controller')
-const queryParser = require('../helpers/parseQuery')
+const queryParser = require('../helpers/queryParser')
 
 const jsonParser = bodyParser.json()
 
