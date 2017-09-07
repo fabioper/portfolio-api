@@ -20,8 +20,8 @@ const Project = function() {
             'Angular',
             'PostgreSQL'
         ]))
-        this.lessonsLearned.push(faker.lorem.sentence(50))
-        this.images.push(faker.image.business)
+        this.lessonsLearned.push(faker.lorem.sentence(15))
+        this.images.push(faker.image.business())
     }
 }
 
@@ -35,4 +35,6 @@ const seedProject = function(times) {
     return projects
 }
 
-module.exports = seedProject
+const projects = seedProject(4)
+
+module.exports = { projects, seedProject }

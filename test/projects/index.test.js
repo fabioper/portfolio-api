@@ -8,7 +8,6 @@ describe('GET /projects', () => {
             .get('/api/projects')
             .expect(200)
             .then(res => {
-                expect(res.body.results).to.be.an('array')
                 expect(res.body.results).to.have.lengthOf(4)
                 done()
             })
