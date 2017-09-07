@@ -2,7 +2,13 @@ const Project = require('../models/project')
 
 const ProjectController = {
     index(req, res, next) {
+        const { sort, limit, fields, skip } = req.queries
+
         Project.find()
+            .sort(sort || {})
+            .skip(skip || 0)
+            .limit(limit || 0)
+            .select(fields || {})
             .then(projects => {
                 res.json({
                     results: projects
@@ -12,7 +18,10 @@ const ProjectController = {
     },
 
     show(req, res, next) {
+        const { fields } = req.queries
+
         Project.findById(req.params.id)
+            .select(fields || {})
             .then(project => {
                 if (!project) {
                     return res.status(404).json('Project id not found')

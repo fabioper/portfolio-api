@@ -19,6 +19,8 @@ app.use((error, req, res, next) => {
         code = 404
     }
 
+    if (code === 500) console.log(error)
+
     res.status(code).json({
         error: {
             status: res.statusCode,

@@ -33,4 +33,15 @@ describe('GET /projects/:id', () => {
             .expect(404)
             .end(done)
     })
+
+    it('should filter project fields by passing "fields" query', done => {
+        request(app)
+            .get(`/api/projects/${project._id}?fields=title,url`)
+            .expect(200)
+            .then(res => {
+                expect(res.body).to.have.all.keys(['title', 'url', '_id'])
+                done()
+            })
+            .catch(done)
+    })
 })

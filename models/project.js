@@ -6,11 +6,7 @@ const ProjectSchema = new Schema({
     title: {
         type: String,
         minlength: 3,
-        required: true,
-        index: {
-            type: 'text',
-            unique: true
-        }
+        required: true
     },
     description: {
         type: String,
