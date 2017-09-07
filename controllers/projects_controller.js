@@ -2,7 +2,7 @@ const Project = require('../models/project')
 
 const ProjectController = {
     index(req, res, next) {
-        const { sort, limit, fields, skip } = req.queries
+        const { sort, limit, fields, skip } = req.query
 
         Project.find()
             .sort(sort || {})
@@ -18,7 +18,7 @@ const ProjectController = {
     },
 
     show(req, res, next) {
-        const { fields } = req.queries
+        const { fields } = req.query
 
         Project.findById(req.params.id)
             .select(fields || {})

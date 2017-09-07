@@ -1,14 +1,13 @@
 const bodyParser = require('body-parser')
 const router = require('express').Router()
 const projectsController = require('../controllers/projects_controller')
-const queryParser = require('../helpers/queryParser')
 
 const jsonParser = bodyParser.json()
 
-router.get('/', queryParser, projectsController.index)
+router.get('/', projectsController.index)
 router.post('/', jsonParser, projectsController.create)
 router.patch('/:id', jsonParser, projectsController.edit)
 router.delete('/:id', projectsController.destroy)
-router.get('/:id', queryParser, projectsController.show)
+router.get('/:id', projectsController.show)
 
 module.exports = router

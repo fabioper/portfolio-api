@@ -1,17 +1,20 @@
+const qs = require('qs')
+
 const queryParser = {
     parse(query) {
         return parseInt(query, 10) || query.replace(/,/g, ' ')
     },
 
-    queries(req, res, next) {
+    queries(queries) {
         const opts = {}
 
-        Object.keys(req.query).forEach(query => {
-            opts[query] = queryParser.parse(req.query[query])
+        queries = qs.parse(queries)
+
+        Object.keys(queries).forEach(query => {
+            opts[query] = queryParser.parse(queries[query])
         })
 
-        req.queries = opts
-        next()
+        return opts
     }
 }
 

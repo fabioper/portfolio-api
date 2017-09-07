@@ -1,12 +1,15 @@
 const config = require('./config').get(process.env.NODE_ENV)
 const express = require('express')
 const logger = require('morgan')
+const queryParser = require('./helpers/queryParser')
 
 const app = express()
 
 if (process.env.NODE_ENV !== 'test') {
     app.use(logger('dev'))
 }
+
+app.set('query parser', queryParser)
 
 app.use('/api', require('./routes'))
 
