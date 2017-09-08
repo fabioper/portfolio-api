@@ -1,8 +1,8 @@
-const config = require('./config').get(process.env.NODE_ENV)
 const mongoose = require('mongoose')
+const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/portfolio_test'
 
 mongoose.Promise = global.Promise
 
-mongoose.connect(config.MONGO_URI, {
+mongoose.connect(mongoUri, {
     useMongoClient: true
 })
