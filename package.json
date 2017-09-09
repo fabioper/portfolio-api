@@ -1,18 +1,20 @@
 {
   "name": "portfolio-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "app.js",
   "scripts": {
     "start": "node app",
-    "dev": "nodemon -r dotenv/config app",
+    "dev": "NODE_ENV=development nodemon -r dotenv/config app",
     "test": "NODE_ENV=test nodemon --exec 'mocha --recursive'"
   },
   "repository": "git@github.com:fabioper/portfolio-api.git",
   "author": "Fábio Pereira <fabiopereira.fps@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "express-subdomain": "^1.0.5",
     "jsonwebtoken": "^8.0.0",
     "mongoose": "^4.11.1",
     "morgan": "^1.8.2",
