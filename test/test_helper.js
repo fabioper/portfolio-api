@@ -1,9 +1,14 @@
-const Project = require('../models/project')
+const Project = require('../models/project.model')
+const User = require('../models/user.model')
 const { projects } = require('./seeds/projects_seed')
 
 beforeEach(done => {
-    Project.remove()
+    Promise.all([Project.remove(), User.remove()])
         .then(() => Project.insertMany(projects))
+        .then(() => User.create({
+            username: 'fabioz',
+            password: 'beautifulpass'
+        }))
         .then(() => done())
-        .catch(err => done())
+        .catch(() => done())
 })

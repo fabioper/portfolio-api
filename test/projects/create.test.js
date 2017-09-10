@@ -1,7 +1,7 @@
 const { expect } = require('chai')
 const request = require('supertest')
 const { seedProject } = require('../seeds/projects_seed')
-const Project = require('../../models/project')
+const Project = require('../../models/project.model')
 const app = require('../../app')
 
 describe('POST /projects', () => {
@@ -21,11 +21,16 @@ describe('POST /projects', () => {
             .catch(done)
     })
 
-    it('should respond with 400 when sending invalid data', done => {
+    it('should respond with 422 when sending invalid data', done => {
         request(app)
             .post('/api/projects')
             .send({})
-            .expect(400)
-            .end(done)
+            .expect(422)
+            .then(res => {
+                expect(res.body).to.have.property('errors').and.not.be.empty
+                expect(res.body).to.have.property('status', 422)
+                done()
+            })
+            .catch(done)
     })
 })

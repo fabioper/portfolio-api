@@ -24,14 +24,24 @@ describe('GET /projects/:id', () => {
         request(app)
             .get(`/api/projects/${id}`)
             .expect(404)
-            .end(done)
+            .then(res => {
+                expect(res.body).to.have.property('errors').and.not.be.empty
+                expect(res.body).to.have.property('status', 404)
+                done()
+            })
+            .catch(done)
     })
 
     it('should return a 404 if project id is invalid', done => {
         request(app)
             .get('/api/projects/123')
             .expect(404)
-            .end(done)
+            .then(res => {
+                expect(res.body).to.have.property('errors').and.not.be.empty
+                expect(res.body).to.have.property('status', 404)
+                done()
+            })
+            .catch(done)
     })
 
     it('should filter project fields by passing "fields" query', done => {

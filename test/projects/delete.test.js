@@ -2,7 +2,7 @@ const { expect } = require('chai')
 const request = require('supertest')
 const app = require('../../app')
 const { projects } = require('../seeds/projects_seed')
-const Project = require('../../models/project')
+const Project = require('../../models/project.model')
 const { ObjectId } = require('mongoose').Types
 
 describe('DELETE /projects', () => {
@@ -13,7 +13,9 @@ describe('DELETE /projects', () => {
             .delete(`/api/projects/${project._id}`)
             .expect(200)
             .then(res => {
-                expect(res.body.message).to.be.equals(`Project ${project._id} successfully deleted.`)
+                expect(res.body).to.have.property('errors', null)
+                expect(res.body).to.have.property('status', 200)
+                expect(res.body).to.have.property('message')
                 return Project.findById(project._id)
             })
             .then(project => {
@@ -28,13 +30,23 @@ describe('DELETE /projects', () => {
         request(app)
             .delete(`/api/projects/${id}`)
             .expect(404)
-            .end(done)
+            .then(res => {
+                expect(res.body).to.have.property('errors').and.not.be.empty
+                expect(res.body).to.have.property('status', 404)
+                done()
+            })
+            .catch(done)
     })
 
-    it('should return 404 if object is invalid', done => {
+    it('should return 404 if object id invalid', done => {
         request(app)
             .delete('/api/projects/123')
             .expect(404)
-            .end(done)
+            .then(res => {
+                expect(res.body).to.have.property('errors').and.not.be.empty
+                expect(res.body).to.have.property('status', 404)
+                done()
+            })
+            .catch(done)
     })
 })

@@ -2,7 +2,7 @@ const { expect } = require('chai')
 const request = require('supertest')
 const app = require('../../app')
 const { projects } = require('../seeds/projects_seed')
-const Project = require('../../models/project')
+const Project = require('../../models/project.model')
 const { ObjectId } = require('mongoose').Types
 
 describe('PATCH /projects/:id', () => {
@@ -24,32 +24,44 @@ describe('PATCH /projects/:id', () => {
             .catch(done)
     })
 
-    it('should return with 400 when sending invalid data', done => {
+    it('should respond with 422 when sending invalid data', done => {
         request(app)
             .patch(`/api/projects/${project._id}`)
-            .send({
-                title: 'VI',
-                url: '123'
+            .send({ title: 'VI', url: '123' })
+            .expect(422)
+            .then(res => {
+                expect(res.body).to.have.property('errors').and.not.be.empty
+                expect(res.body).to.have.property('status', 422)
+                done()
             })
-            .expect(400)
-            .end(done)
+            .catch(done)
     })
 
-    it('should return 404 if project id not found', done => {
+    it('should respond with 404 if project id not found', done => {
         const id = new ObjectId()
 
         request(app)
             .patch(`/api/projects/${id}`)
             .send({})
             .expect(404)
-            .end(done)
+            .then(res => {
+                expect(res.body).to.have.property('errors').and.not.be.empty
+                expect(res.body).to.have.property('status', 404)
+                done()
+            })
+            .catch(done)
     })
 
-    it('should return 404 if project id is invalid', done => {
+    it('should respond with 404 if project id is invalid', done => {
         request(app)
             .patch('/api/projects/123')
             .send({})
             .expect(404)
-            .end(done)
+            .then(res => {
+                expect(res.body).to.have.property('errors').and.not.be.empty
+                expect(res.body).to.have.property('status', 404)
+                done()
+            })
+            .catch(done)
     })
 })
