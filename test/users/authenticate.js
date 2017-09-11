@@ -6,7 +6,8 @@ const userFixt = require('../fixtures/users.fixture')
 describe('POST /authenticate', () => {
     it('should get a token', done => {
         request(app)
-            .post('/api/authenticate')
+            .post('/authenticate')
+            .set('Host', 'api.localhost.dev')
             .send(userFixt)
             .expect(200)
             .then(res => {
@@ -20,7 +21,8 @@ describe('POST /authenticate', () => {
 
     it('should respond with 401 if user data is invalid', done => {
         request(app)
-            .post('/api/authenticate')
+            .post('/authenticate')
+            .set('Host', 'api.localhost.dev')
             .send({ username: 'asde', password: 'passnotvalid' })
             .expect(401)
             .then(res => {

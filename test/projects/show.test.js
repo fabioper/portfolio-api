@@ -9,7 +9,8 @@ describe('GET /projects/:id', () => {
 
     it('should return an individual project', done => {
         request(app)
-            .get(`/api/projects/${project._id}`)
+            .get(`/projects/${project._id}`)
+            .set('Host', 'api.localhost.dev')
             .expect(200)
             .then(res => {
                 expect(res.body.title).to.be.equals(project.title)
@@ -22,7 +23,8 @@ describe('GET /projects/:id', () => {
         const id = new ObjectId()
 
         request(app)
-            .get(`/api/projects/${id}`)
+            .get(`/projects/${id}`)
+            .set('Host', 'api.localhost.dev')
             .expect(404)
             .then(res => {
                 expect(res.body).to.have.property('errors').and.not.be.empty
@@ -34,7 +36,8 @@ describe('GET /projects/:id', () => {
 
     it('should return a 404 if project id is invalid', done => {
         request(app)
-            .get('/api/projects/123')
+            .get('/projects/123')
+            .set('Host', 'api.localhost.dev')
             .expect(404)
             .then(res => {
                 expect(res.body).to.have.property('errors').and.not.be.empty
@@ -46,7 +49,8 @@ describe('GET /projects/:id', () => {
 
     it('should filter project fields by passing "fields" query', done => {
         request(app)
-            .get(`/api/projects/${project._id}?fields=title,url`)
+            .get(`/projects/${project._id}?fields=title,url`)
+            .set('Host', 'api.localhost.dev')
             .expect(200)
             .then(res => {
                 expect(res.body).to.have.all.keys(['title', 'url', '_id'])

@@ -5,7 +5,8 @@ const app = require('../../app')
 describe('GET /projects', () => {
     it('should return all projects', done => {
         request(app)
-            .get('/api/projects')
+            .get('/projects')
+            .set('Host', 'api.localhost.dev')
             .expect(200)
             .then(res => {
                 expect(res.body).to.have.property('errors', null)
@@ -19,7 +20,8 @@ describe('GET /projects', () => {
 
     it('should limit project results by passing "limit" query', done => {
         request(app)
-            .get('/api/projects?limit=2')
+            .get('/projects?limit=2')
+            .set('Host', 'api.localhost.dev')
             .expect(200)
             .then(res => {
                 expect(res.body).to.have.property('errors', null)
@@ -33,7 +35,8 @@ describe('GET /projects', () => {
 
     it('should filter project results fields by passing "fields" query', done => {
         request(app)
-            .get('/api/projects?fields=-_id,title,description,url')
+            .get('/projects?fields=-_id,title,description,url')
+            .set('Host', 'api.localhost.dev')
             .expect(200)
             .then(res => {
                 expect(res.body).to.have.property('errors', null)
@@ -48,7 +51,8 @@ describe('GET /projects', () => {
 
     it('should skip project results by passing "skip" query', done => {
         request(app)
-            .get('/api/projects?sort=title&skip=2')
+            .get('/projects?sort=title&skip=2')
+            .set('Host', 'api.localhost.dev')
             .expect(200)
             .then(res => {
                 expect(res.body).to.have.property('errors', null)

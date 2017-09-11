@@ -44,7 +44,7 @@ const ProjectController = {
     create(req, res, next) {
         Project.create(req.body)
             .then(project => {
-                res.redirect(`/api/projects/${project._id}`)
+                res.redirect(`/projects/${project._id}`)
             })
             .catch(next)
     },
@@ -60,7 +60,7 @@ const ProjectController = {
                     return next(boom.notFound('Project ID not found'))
                 }
 
-                res.redirect(`/api/projects/${project._id}`)
+                res.redirect(`/projects/${project._id}`)
             })
             .catch(next)
     },

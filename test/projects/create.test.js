@@ -11,7 +11,8 @@ describe('POST /projects', () => {
 
     beforeEach(done => {
         request(app)
-            .post('/api/authenticate')
+            .post('/authenticate')
+            .set('Host', 'api.localhost.dev')
             .send(userFixt)
             .then(res => {
                 token = res.body.token
@@ -36,11 +37,12 @@ describe('POST /projects', () => {
         }
 
         request(app)
-            .post('/api/projects')
+            .post('/projects')
+            .set('Host', 'api.localhost.dev')
             .send(project)
             .set('Authorization', token)
             .expect(302)
-            .expect('Location', `/api/projects/${project._id}`)
+            .expect('Location', `/projects/${project._id}`)
             .then(() => Project.findById(project._id))
             .then(result => {
                 expect(result.title).to.be.equals(project.title)
@@ -51,7 +53,8 @@ describe('POST /projects', () => {
 
     it('should respond with 422 when sending invalid data', done => {
         request(app)
-            .post('/api/projects')
+            .post('/projects')
+            .set('Host', 'api.localhost.dev')
             .send({})
             .set('Authorization', token)
             .expect(422)
@@ -66,7 +69,8 @@ describe('POST /projects', () => {
     it('should respond with 403 if no token provided', done => {
         const project = projectsFixt[0]
         request(app)
-            .post('/api/projects')
+            .post('/projects')
+            .set('Host', 'api.localhost.dev')
             .send(project)
             .expect(403)
             .then(() => Project.count())

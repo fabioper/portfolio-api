@@ -12,7 +12,8 @@ describe('DELETE /projects', () => {
 
     beforeEach(done => {
         request(app)
-            .post('/api/authenticate')
+            .post('/authenticate')
+            .set('Host', 'api.localhost.dev')
             .send(userFixt)
             .then(res => {
                 token = res.body.token
@@ -23,7 +24,8 @@ describe('DELETE /projects', () => {
 
     it('should delete a project', done => {
         request(app)
-            .delete(`/api/projects/${project._id}`)
+            .delete(`/projects/${project._id}`)
+            .set('Host', 'api.localhost.dev')
             .set('Authorization', token)
             .expect(200)
             .then(res => {
@@ -42,7 +44,8 @@ describe('DELETE /projects', () => {
     it('should return 404 if project not found', done => {
         const id = new ObjectId()
         request(app)
-            .delete(`/api/projects/${id}`)
+            .delete(`/projects/${id}`)
+            .set('Host', 'api.localhost.dev')
             .set('Authorization', token)
             .expect(404)
             .then(res => {
@@ -55,7 +58,8 @@ describe('DELETE /projects', () => {
 
     it('should return 404 if object id invalid', done => {
         request(app)
-            .delete('/api/projects/123')
+            .delete('/projects/123')
+            .set('Host', 'api.localhost.dev')
             .set('Authorization', token)
             .expect(404)
             .then(res => {

@@ -12,7 +12,8 @@ describe('PATCH /projects/:id', () => {
 
     beforeEach(done => {
         request(app)
-            .post('/api/authenticate')
+            .post('/authenticate')
+            .set('Host', 'api.localhost.dev')
             .send(userFixt)
             .then(res => {
                 token = res.body.token
@@ -23,13 +24,14 @@ describe('PATCH /projects/:id', () => {
 
     it('should edit an existing project', done => {
         request(app)
-            .patch(`/api/projects/${project._id}`)
+            .patch(`/projects/${project._id}`)
+            .set('Host', 'api.localhost.dev')
             .send({
                 title: 'My Project'
             })
             .set('Authorization', token)
             .expect(302)
-            .expect('Location', `/api/projects/${project._id}`)
+            .expect('Location', `/projects/${project._id}`)
             .then(() => Project.findById(project._id))
             .then(result => {
                 expect(result.title).to.be.equals('My Project')
@@ -40,7 +42,8 @@ describe('PATCH /projects/:id', () => {
 
     it('should respond with 422 when sending invalid data', done => {
         request(app)
-            .patch(`/api/projects/${project._id}`)
+            .patch(`/projects/${project._id}`)
+            .set('Host', 'api.localhost.dev')
             .send({ title: 'VI', url: '123' })
             .set('Authorization', token)
             .expect(422)
@@ -56,7 +59,8 @@ describe('PATCH /projects/:id', () => {
         const id = new ObjectId()
 
         request(app)
-            .patch(`/api/projects/${id}`)
+            .patch(`/projects/${id}`)
+            .set('Host', 'api.localhost.dev')
             .send({})
             .set('Authorization', token)
             .expect(404)
@@ -70,7 +74,8 @@ describe('PATCH /projects/:id', () => {
 
     it('should respond with 404 if project id is invalid', done => {
         request(app)
-            .patch('/api/projects/123')
+            .patch('/projects/123')
+            .set('Host', 'api.localhost.dev')
             .send({})
             .set('Authorization', token)
             .expect(404)

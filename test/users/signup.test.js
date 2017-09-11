@@ -6,7 +6,8 @@ const User = require('../../models/user.model')
 describe('POST /signup', () => {
     it('should create a new user', done => {
         request(app)
-            .post('/api/signup')
+            .post('/signup')
+            .set('Host', 'api.localhost.dev')
             .send({ username: 'fabiop', password: 'mypass' })
             .expect(201)
             .then(res => {
@@ -23,7 +24,8 @@ describe('POST /signup', () => {
 
     it('should respond with 422 when sending invalid data', done => {
         request(app)
-            .post('/api/signup')
+            .post('/signup')
+            .set('Host', 'api.localhost.dev')
             .send({ username: 'fa', password: 'asdd' })
             .expect(422)
             .then(res => {
