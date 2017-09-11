@@ -7,6 +7,7 @@ beforeEach(done => {
     Promise.all([Project.remove(), User.remove()])
         .then(() => Project.insertMany(projectsFixt))
         .then(() => User.create(userFixt))
+        .then(user => User.findByIdAndUpdate(user._id, { admin: true }))
         .then(() => done())
         .catch(done)
 })
