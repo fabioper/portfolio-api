@@ -3,10 +3,10 @@ const request = require('supertest')
 const app = require('../../app')
 const User = require('../../models/user.model')
 
-describe('POST /admin/signup', () => {
+describe('POST /signup', () => {
     it('should create a new user', done => {
         request(app)
-            .post('/api/admin/signup')
+            .post('/api/signup')
             .send({ username: 'fabiop', password: 'mypass' })
             .expect(201)
             .then(res => {
@@ -23,7 +23,7 @@ describe('POST /admin/signup', () => {
 
     it('should respond with 422 when sending invalid data', done => {
         request(app)
-            .post('/api/admin/signup')
+            .post('/api/signup')
             .send({ username: 'fa', password: 'asdd' })
             .expect(422)
             .then(res => {

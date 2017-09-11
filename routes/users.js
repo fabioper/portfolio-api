@@ -5,6 +5,6 @@ const UsersController = require('../controllers/users.controller')
 const jsonParser = bodyParser.json()
 
 router.post('/signup', jsonParser, UsersController.signup)
-router.post('/auth', jsonParser, UsersController.auth)
+router.post('/authenticate', jsonParser, UsersController.auth)
 
 module.exports = router

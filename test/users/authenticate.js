@@ -3,10 +3,10 @@ const request = require('supertest')
 const app = require('../../app')
 const userFixt = require('../fixtures/users.fixture')
 
-describe('POST /admin/auth', () => {
+describe('POST /authenticate', () => {
     it('should get a token', done => {
         request(app)
-            .post('/api/admin/auth')
+            .post('/api/authenticate')
             .send(userFixt)
             .expect(200)
             .then(res => {
@@ -20,7 +20,7 @@ describe('POST /admin/auth', () => {
 
     it('should respond with 401 if user data is invalid', done => {
         request(app)
-            .post('/api/admin/auth')
+            .post('/api/authenticate')
             .send({ username: 'asde', password: 'passnotvalid' })
             .expect(401)
             .then(res => {

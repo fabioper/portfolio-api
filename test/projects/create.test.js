@@ -11,7 +11,7 @@ describe('POST /projects', () => {
 
     beforeEach(done => {
         request(app)
-            .post('/api/admin/auth')
+            .post('/api/authenticate')
             .send(userFixt)
             .then(res => {
                 token = res.body.token
