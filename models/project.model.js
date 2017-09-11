@@ -11,7 +11,7 @@ const ProjectSchema = new Schema({
     description: {
         type: String,
         minlength: 20,
-        maxlength: 400,
+        maxlength: 500,
         required: true
     },
     stack: [{

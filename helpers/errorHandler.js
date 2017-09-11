@@ -15,10 +15,10 @@ const errorHandler = (err, req, res, next) => {
     }
 
     const status = err.output.statusCode || err.output.payload.statusCode
-    const message = err.data || err.output.payload.message || err.message
+    const { message } = err.data || err.output.payload || err
 
     res.status(status || 500).json({
-        errors: { message },
+        errors: message,
         status: res.statusCode
     })
 }

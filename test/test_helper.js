@@ -1,14 +1,12 @@
 const Project = require('../models/project.model')
 const User = require('../models/user.model')
-const { projects } = require('./seeds/projects_seed')
+const projectsFixt = require('./fixtures/projects.fixture')
+const userFixt = require('./fixtures/users.fixture')
 
 beforeEach(done => {
     Promise.all([Project.remove(), User.remove()])
-        .then(() => Project.insertMany(projects))
-        .then(() => User.create({
-            username: 'fabioz',
-            password: 'beautifulpass'
-        }))
+        .then(() => Project.insertMany(projectsFixt))
+        .then(() => User.create(userFixt))
         .then(() => done())
-        .catch(() => done())
+        .catch(done)
 })

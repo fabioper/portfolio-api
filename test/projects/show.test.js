@@ -1,11 +1,11 @@
 const { expect } = require('chai')
 const request = require('supertest')
 const app = require('../../app')
-const { projects } = require('../seeds/projects_seed')
+const projectsFixt = require('../fixtures/projects.fixture')
 const { ObjectId } = require('mongoose').Types
 
 describe('GET /projects/:id', () => {
-    const project = projects[0]
+    const project = projectsFixt[0]
 
     it('should return an individual project', done => {
         request(app)

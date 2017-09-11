@@ -1,12 +1,25 @@
 const { expect } = require('chai')
 const request = require('supertest')
 const app = require('../../app')
-const { projects } = require('../seeds/projects_seed')
 const Project = require('../../models/project.model')
 const { ObjectId } = require('mongoose').Types
+const projectsFixt = require('../fixtures/projects.fixture')
+const userFixt = require('../fixtures/users.fixture')
 
 describe('PATCH /projects/:id', () => {
-    const project = projects[0]
+    const project = projectsFixt[0]
+    let token
+
+    beforeEach(done => {
+        request(app)
+            .post('/api/admin/auth')
+            .send(userFixt)
+            .then(res => {
+                token = res.body.token
+                done()
+            })
+            .catch(done)
+    })
 
     it('should edit an existing project', done => {
         request(app)
@@ -14,6 +27,7 @@ describe('PATCH /projects/:id', () => {
             .send({
                 title: 'My Project'
             })
+            .set('Authorization', token)
             .expect(302)
             .expect('Location', `/api/projects/${project._id}`)
             .then(() => Project.findById(project._id))
@@ -28,6 +42,7 @@ describe('PATCH /projects/:id', () => {
         request(app)
             .patch(`/api/projects/${project._id}`)
             .send({ title: 'VI', url: '123' })
+            .set('Authorization', token)
             .expect(422)
             .then(res => {
                 expect(res.body).to.have.property('errors').and.not.be.empty
@@ -43,6 +58,7 @@ describe('PATCH /projects/:id', () => {
         request(app)
             .patch(`/api/projects/${id}`)
             .send({})
+            .set('Authorization', token)
             .expect(404)
             .then(res => {
                 expect(res.body).to.have.property('errors').and.not.be.empty
@@ -56,6 +72,7 @@ describe('PATCH /projects/:id', () => {
         request(app)
             .patch('/api/projects/123')
             .send({})
+            .set('Authorization', token)
             .expect(404)
             .then(res => {
                 expect(res.body).to.have.property('errors').and.not.be.empty

@@ -1,12 +1,13 @@
 const { expect } = require('chai')
 const request = require('supertest')
 const app = require('../../app')
+const userFixt = require('../fixtures/users.fixture')
 
 describe('POST /admin/auth', () => {
     it('should get a token', done => {
         request(app)
             .post('/api/admin/auth')
-            .send({ username: 'fabioz', password: 'beautifulpass' })
+            .send(userFixt)
             .expect(200)
             .then(res => {
                 expect(res.body).to.have.property('errors', null)

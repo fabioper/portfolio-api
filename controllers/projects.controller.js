@@ -1,5 +1,5 @@
-const boom = require('boom')
 const Project = require('../models/project.model')
+const boom = require('boom')
 
 const ProjectController = {
     index(req, res, next) {
