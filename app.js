@@ -1,3 +1,4 @@
+const subdomain = require('express-subdomain')
 const express = require('express')
 const logger = require('morgan')
 const helmet = require('helmet')
@@ -16,7 +17,7 @@ if (process.env.NODE_ENV !== 'test') {
     app.use(logger('dev'))
 }
 
-app.use('/api', require('./routes'))
+app.use(subdomain('api', require('./routes')))
 app.use(errorHandler)
 
 app.listen(process.env.PORT, () => {
