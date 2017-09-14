@@ -3,7 +3,7 @@ const { ObjectId } = require('mongoose').Types
 const projects = [
     {
         _id: new ObjectId(),
-        title: 'Ghost Reverisadwes',
+        title: 'Ghost Reveries',
         description: 'Ghost Reveries was recorded at Fascination Street Studios, which are located in Örebro, Sweden. The album\'s artwork is by Travis Smith, who has contributed artwork to Opeth\'s previous releases. Ghost Reveries was released in Europe on August 29, 2005 and in North America on August 30, 2005 and peaked on the Billboard 200 at #64.',
         url: 'https://opeth.com',
         stack: ['Node.js', 'React', 'MongoDB'],

@@ -63,4 +63,17 @@ describe('GET /projects', () => {
             })
             .catch(done)
     })
+
+    it('should sort projects results by passing "sort" query', done => {
+        request(app)
+            .get('/projects?sort=title')
+            .set('Host', 'api.localhost.dev')
+            .expect(200)
+            .then(res => {
+                expect(res.body.results[0].title).to.be.equals('Fear of a Blank Planet')
+                expect(res.body.results[3].title).to.be.equals('Remedy Lane')
+                done()
+            })
+            .catch(done)
+    })
 })
