@@ -21,9 +21,9 @@ const UsersController = {
         User.findOne({ username })
             .then(user => {
                 if (!user || !user.comparePassword(password)) {
-                    return next(boom.unauthorized('username/password invalid'))
+                    const message = 'Invalid user'
+                    return next(boom.unauthorized(message))
                 }
-
                 res.json({
                     errors: null,
                     status: res.statusCode,

@@ -8,10 +8,10 @@ const queryParser = {
     queries(queries) {
         const opts = {}
 
-        queries = qs.parse(queries)
+        const parsedQueries = qs.parse(queries)
 
-        Object.keys(queries).forEach(query => {
-            opts[query] = queryParser.parse(queries[query])
+        Object.keys(parsedQueries).forEach(query => {
+            opts[query] = queryParser.parse(parsedQueries[query])
         })
 
         return opts

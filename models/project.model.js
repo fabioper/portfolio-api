@@ -14,30 +14,28 @@ const ProjectSchema = new Schema({
         maxlength: 500,
         required: true
     },
-    stack: [{
-        type: String,
-        maxlength: 20
-    }],
+    stack: [
+        {
+            type: String,
+            maxlength: 20
+        }
+    ],
     url: {
         type: String,
-        validate: {
-            validator: value => validator.isURL(value)
-        }
+        validate: { validator: value => validator.isURL(value) }
     },
-    lessonsLearned: [{
-        type: String,
-        minlength: 10,
-        maxlength: 200
-    }],
+    lessonsLearned: [
+        {
+            type: String,
+            minlength: 10,
+            maxlength: 200
+        }
+    ],
     images: {
         type: String,
-        validate: {
-            validator: value => validator.isURL(value)
-        }
+        validate: { validator: value => validator.isURL(value) }
     }
-}, {
-    timestamps: true
-})
+}, { timestamps: true })
 
 const Project = mongoose.model('project', ProjectSchema)
 

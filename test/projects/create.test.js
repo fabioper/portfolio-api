@@ -27,13 +27,14 @@ describe('POST /projects', () => {
             title: 'Still Life',
             description: 'This album was the band\'s first to be recorded with Martin Mendez, who has continued to be the band\'s bass player. Although he had joined the band prior to the release of My Arms, Your Hearse, he had not contributed any bass lines to that recording. This lineup is considered to be the classic Opeth lineup.',
             url: 'https://stilllife.io',
-            stack: ['MongoDB', 'Mongoose', 'React', 'Node.js'],
-            lessonsLearned: [
-                'Still Life is the fourth studio album from the Swedish progressive death metal band Opeth.'
+            stack: [
+                'MongoDB',
+                'Mongoose',
+                'React',
+                'Node.js'
             ],
-            images: [
-                'https://lastfm-img2.akamaized.net/i/u/770x0/4ddf6fda535343ebb3fe7fbadf92a710.jpg#4ddf6fda535343ebb3fe7fbadf92a710'
-            ]
+            lessonsLearned: ['Still Life is the fourth studio album from the Swedish progressive death metal band Opeth.'],
+            images: ['https://lastfm-img2.akamaized.net/i/u/770x0/4ddf6fda535343ebb3fe7fbadf92a710.jpg#4ddf6fda535343ebb3fe7fbadf92a710']
         }
 
         request(app)

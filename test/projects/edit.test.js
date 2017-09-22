@@ -26,9 +26,7 @@ describe('PATCH /projects/:id', () => {
         request(app)
             .patch(`/projects/${project._id}`)
             .set('Host', 'api.localhost.dev')
-            .send({
-                title: 'My Project'
-            })
+            .send({ title: 'My Project' })
             .set('Authorization', token)
             .expect(302)
             .expect('Location', `/projects/${project._id}`)
