@@ -23,17 +23,15 @@ const UserSchema = new Schema({
     }
 })
 
-UserSchema.post('validate', (user, next) => {
-    bcrypt.genSalt((err, salt) => {
-        if (err) return next(err)
-
-        bcrypt.hash(user.password, salt, (err, hash) => {
-            if (err) return next(err)
-
-            user.password = hash
-            next()
-        })
-    })
+UserSchema.post('validate', async (user, next) => {
+    try {
+        const salt = await bcrypt.genSalt()
+        const hash = await bcrypt.hash(user.password, salt)
+        user.password = hash
+        next()
+    } catch (err) {
+        next(err)
+    }
 })
 
 UserSchema.methods.comparePassword = function(candidatePassword) {

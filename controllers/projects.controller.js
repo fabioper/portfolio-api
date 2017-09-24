@@ -56,7 +56,9 @@ const ProjectController = {
 
         Project.findByIdAndUpdate(id, body, opts)
             .then(project => {
-                if (!project) return next(boom.notFound('Project ID not found'))
+                if (!project) {
+                    return next(boom.notFound('Project ID not found'))
+                }
 
                 res.redirect(`/projects/${project._id}`)
             })
@@ -69,7 +71,9 @@ const ProjectController = {
 
         Project.findByIdAndRemove(id, opts)
             .then(project => {
-                if (!project) return next(boom.notFound('Project ID not found'))
+                if (!project) {
+                    return next(boom.notFound('Project ID not found'))
+                }
 
                 res.json({
                     errors: null,

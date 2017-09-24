@@ -33,7 +33,7 @@
         "comma-style": ["error", "last"],
         "computed-property-spacing": "error",
         "consistent-this": ["error", "self"],
-        "curly": ["error", "multi-or-nest", "consistent"],
+        "curly": "error",
         "dot-location": ["error", "property"],
         "dot-notation": "error",
         "eol-last": ["warn", "always"],
