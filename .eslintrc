@@ -41,7 +41,6 @@
         "for-direction": "error",
         "func-call-spacing": "error",
         "func-style": ["error", "declaration"],
-        // "function-paren-newline": ["error", { "minItems": 5 }],
         "getter-return": "error",
         "global-require": "warn",
         "handle-callback-err": "warn",
@@ -51,7 +50,6 @@
             "beforeColon": false,
             "afterColon": true
         }],
-        // "max-len": ["error", 80],
         "max-nested-callbacks": ["error", 4],
         "max-statements": ["error", 10],
         "new-cap": ["warn", { "properties": false }],
@@ -94,7 +92,6 @@
         "no-with": "error",
         "nonblock-statement-body-position": ["error", "beside"],
         "one-var": ["error", "never"],
-        // "object-curly-newline": ["error", { "multiline": true, "minProperties": 5 }],
         "object-curly-spacing": ["warn", "always"],
         "object-shorthand": "error",
         "operator-assignment": "error",
